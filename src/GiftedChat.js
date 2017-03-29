@@ -54,6 +54,7 @@ class GiftedChat extends React.Component {
       isInitialized: false, // initialization will calculate maxHeight before rendering the chat
       composerHeight: MIN_COMPOSER_HEIGHT,
       messagesContainerHeight: null,
+	  accessoryHeight: 0,
       typingDisabled: false
     };
 
@@ -195,7 +196,7 @@ class GiftedChat extends React.Component {
   // TODO
   // setMinInputToolbarHeight
   getMinInputToolbarHeight() {
-    return this.props.renderAccessory ? this.props.minInputToolbarHeight * 2 : this.props.minInputToolbarHeight;
+    return this.props.renderAccessory ? this.props.minInputToolbarHeight + this.props.accessoryHeight : this.props.minInputToolbarHeight;
   }
 
   prepareMessagesContainerHeight(value) {
@@ -488,6 +489,7 @@ GiftedChat.defaultProps = {
   user: {},
   bottomOffset: 0,
   minInputToolbarHeight: 44,
+  accessoryHeight: 0,
   isLoadingEarlier: false,
   messageIdGenerator: () => uuid.v4()
 };
@@ -520,6 +522,7 @@ GiftedChat.propTypes = {
   user: React.PropTypes.object,
   bottomOffset: React.PropTypes.number,
   minInputToolbarHeight: React.PropTypes.number,
+  accessoryHeight: React.PropTypes.number,
   isLoadingEarlier: React.PropTypes.bool,
   messageIdGenerator: React.PropTypes.func,
   keyboardShouldPersistTaps: React.PropTypes.oneOf(['always', 'never', 'handled']),
