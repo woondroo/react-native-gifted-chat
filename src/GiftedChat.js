@@ -55,6 +55,7 @@ class GiftedChat extends React.Component {
       composerHeight: MIN_COMPOSER_HEIGHT,
       messagesContainerHeight: null,
 	  accessoryHeight: 0,
+	  accessorySourceHeight: 0,
       typingDisabled: false
     };
 
@@ -493,6 +494,7 @@ GiftedChat.defaultProps = {
   bottomOffset: 0,
   minInputToolbarHeight: 44,
   accessoryHeight: 0,
+  accessorySourceHeight: 0,
   isLoadingEarlier: false,
   messageIdGenerator: () => uuid.v4()
 };
@@ -526,6 +528,7 @@ GiftedChat.propTypes = {
   bottomOffset: React.PropTypes.number,
   minInputToolbarHeight: React.PropTypes.number,
   accessoryHeight: React.PropTypes.number,
+  accessorySourceHeight: React.PropTypes.number,
   isLoadingEarlier: React.PropTypes.bool,
   messageIdGenerator: React.PropTypes.func,
   keyboardShouldPersistTaps: React.PropTypes.oneOf(['always', 'never', 'handled']),
