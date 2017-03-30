@@ -427,6 +427,13 @@ class GiftedChat extends React.Component {
     return null;
   }
 
+  renderGameWindow() {
+    if (this.props.renderGameWindow) {
+      return this.props.renderGameWindow();
+    }
+    return null;
+  }
+
   render() {
     if (this.state.isInitialized === true) {
       return (
@@ -434,6 +441,7 @@ class GiftedChat extends React.Component {
           <View style={styles.container} onLayout={this.onMainViewLayout}>
             {this.renderMessages()}
             {this.renderInputToolbar()}
+            {this.renderGameWindow()}
           </View>
         </ActionSheet>
       );
@@ -490,6 +498,7 @@ GiftedChat.defaultProps = {
   renderMessage: null,
   renderSend: null,
   renderTime: null,
+  renderGameWindow: null,
   openAccessory: null,
   closeAccessory: null,
   user: {},
@@ -526,6 +535,7 @@ GiftedChat.propTypes = {
   renderMessage: React.PropTypes.func,
   renderSend: React.PropTypes.func,
   renderTime: React.PropTypes.func,
+  renderGameWindow: React.PropTypes.func,
   openAccessory: React.PropTypes.func,
   closeAccessory: React.PropTypes.func,
   user: React.PropTypes.object,
