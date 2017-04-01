@@ -56,6 +56,7 @@ class GiftedChat extends React.Component {
       messagesContainerHeight: null,
 	  accessoryHeight: 0,
 	  accessorySourceHeight: 0,
+	  containerPaddingTop: 50,
       typingDisabled: false
     };
 
@@ -214,7 +215,7 @@ class GiftedChat extends React.Component {
     this.setIsTypingDisabled(true);
     this.setKeyboardHeight(e.endCoordinates ? e.endCoordinates.height : e.end.height);
     this.setBottomOffset(this.props.bottomOffset);
-    const newMessagesContainerHeight = (this.getMaxHeight() - (this.state.composerHeight + (this.getMinInputToolbarHeight() - MIN_COMPOSER_HEIGHT))) - this.getKeyboardHeight() + this.getBottomOffset();
+    const newMessagesContainerHeight = (this.getMaxHeight() - (this.state.composerHeight + (this.getMinInputToolbarHeight() - MIN_COMPOSER_HEIGHT))) - this.getKeyboardHeight() + this.getBottomOffset() - this.state.containerPaddingTop;
     if (this.props.isAnimated === true) {
       Animated.timing(this.state.messagesContainerHeight, {
         toValue: newMessagesContainerHeight,
@@ -324,7 +325,7 @@ class GiftedChat extends React.Component {
     this.setState({
       text: '',
       composerHeight: MIN_COMPOSER_HEIGHT,
-      messagesContainerHeight: this.prepareMessagesContainerHeight(this.getMaxHeight() - this.getMinInputToolbarHeight() - this.getKeyboardHeight() + this.getBottomOffset()),
+      messagesContainerHeight: this.prepareMessagesContainerHeight(this.getMaxHeight() - this.getMinInputToolbarHeight() - this.getKeyboardHeight() + this.getBottomOffset() - this.state.containerPaddingTop),
     });
   }
 
@@ -334,7 +335,7 @@ class GiftedChat extends React.Component {
 
   onInputSizeChanged(size) {
     const newComposerHeight = Math.max(MIN_COMPOSER_HEIGHT, Math.min(MAX_COMPOSER_HEIGHT, size.height));
-    const newMessagesContainerHeight = this.getMaxHeight() - this.calculateInputToolbarHeight(newComposerHeight) - this.getKeyboardHeight() + this.getBottomOffset();
+    const newMessagesContainerHeight = this.getMaxHeight() - this.calculateInputToolbarHeight(newComposerHeight) - this.getKeyboardHeight() + this.getBottomOffset() - this.state.containerPaddingTop;
     this.setState({
       composerHeight: newComposerHeight,
       messagesContainerHeight: this.prepareMessagesContainerHeight(newMessagesContainerHeight),
@@ -456,6 +457,7 @@ class GiftedChat extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: {this.state.containerPaddingTop},
     flex: 1,
   },
 });
