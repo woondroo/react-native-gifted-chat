@@ -97,8 +97,8 @@ export default class Bubble extends React.Component {
     } else {
       if (this.props.currentMessage.text) {
         const options = [
-          'Copy Text',
-          'Cancel',
+          '复制消息',
+          '取消',
         ];
         const cancelButtonIndex = options.length - 1;
         this.context.actionSheet().showActionSheetWithOptions({
